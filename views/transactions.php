@@ -53,7 +53,15 @@
                             <td><?= formatDate($transaction['date']) ?></td>
                             <td><?= $transaction['checkNumber'] ?></td>
                             <td><?= $transaction['description'] ?></td>
-                            <td><?= formatDollarAmount($transaction['amount']) ?></td>
+                            <td>
+                                <?php if ($transaction['amount'] > 0): ?>
+                                <span style="color: mediumseagreen;"> <?= formatDollarAmount($transaction['amount']) ?></span>
+                                <?php elseif ($transaction['amount'] < 0): ?>
+                                    <span style="color: salmon;"> <?= formatDollarAmount($transaction['amount']) ?></span>
+                                <?php else: ?>
+                                    <span style="color: black;"> <?= formatDollarAmount($transaction['amount']) ?></span>
+                                <?php endif ?>
+                            </td>
                         </tr>
                     <?php endforeach ?>
                 <?php endif ?>
